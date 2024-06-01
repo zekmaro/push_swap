@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:53:04 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 17:55:18 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:38:03 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap_bonus(t_stack *stack_id)
 {
-	if (stack_id->len == 0)
+	if (stack_id->len < 2)
 	{
 		return ;
 	}
@@ -26,12 +26,12 @@ void	rotate_bonus(t_stack *stack_id)
 	int	i;
 	int	first;
 
-	i = 0;
-	first = stack_id->stack[0];
-	if (stack_id->len == 0)
+	if (stack_id->len < 2)
 	{
 		return ;
 	}
+	i = 0;
+	first = stack_id->stack[0];
 	while (i < stack_id->len - 1)
 	{
 		stack_id->stack[i] = stack_id->stack[i + 1];
@@ -46,12 +46,12 @@ void	reverse_rotate_bonus(t_stack *stack_id)
 	int	i;
 	int	last;
 
-	i = stack_id->len - 1;
-	last = stack_id->stack[stack_id->len - 1];
-	if (stack_id->len == 0)
+	if (stack_id->len < 2)
 	{
 		return ;
 	}
+	i = stack_id->len - 1;
+	last = stack_id->stack[stack_id->len - 1];
 	while (i > 0)
 	{
 		stack_id->stack[i] = stack_id->stack[i - 1];

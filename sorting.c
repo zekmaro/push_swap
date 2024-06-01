@@ -6,11 +6,20 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:13:45 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 17:59:13 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:59:34 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_arr(int *arr, int *indices, int *copy)
+{
+	free(arr);
+	free(indices);
+	free(copy);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
 
 void	sort_swap(int *x, int *y)
 {
@@ -73,12 +82,7 @@ void	make_indices_arr(int *arr, int *indices, int n)
 	i = 0;
 	copy = copy_arr(arr, n);
 	if (!copy || bubblesort(arr, n))
-	{
-		free(arr);
-		free(indices);
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
+		free_arr(arr, indices, copy);
 	while (i < n)
 	{
 		j = 0;

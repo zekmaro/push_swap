@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:42:18 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 18:05:25 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 14:16:16 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ typedef struct stack
 //---------------
 
 //-----UTILS-----
-void	print_stack(t_stack *stack);
 int		array_len(char **str);
 void	free_memory(char **arr);
 void	free_input(char ***arr);
 int		ft_realloc(t_stack *stack, int new_size);
-void	print_stacks(t_stack *stack_1, t_stack *stack_2);
 int		calculate_pivot(int size);
 int		find_min_value(t_stack *stack, int range);
 int		find_max_value(t_stack *stack, int range);
@@ -59,7 +57,7 @@ void	divide_stack_a(t_stack *stack_a, t_stack *stack_b);
 //---------------
 
 //----PARSING----
-void	check_input(char *str, int num, char ***input, int *stack_a);
+int		check_input(char *str, int num);
 void	initalise_stacks(char ***input, int *stack_a, int *index_stack_a);
 int		get_stack_a(t_stack *a, int argc, char **argv);
 //---------------

@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:59:52 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 18:00:41 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:58:36 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	divide_stack(t_stack *stack_1, t_stack *stack_2, int pivot)
 {
-	int next_pivot;
-	int save;
-	int min;
-	int i;
-	
+	int	next_pivot;
+	int	save;
+	int	min;
+	int	i;
+
 	save = stack_1->len;
 	min = find_min_value(stack_1, stack_1->len);
 	next_pivot = (min + pivot) / 2;
@@ -27,7 +27,7 @@ void	divide_stack(t_stack *stack_1, t_stack *stack_2, int pivot)
 	{
 		if (stack_1->stack[0] >= pivot)
 		{
-			rotate(stack_1);	
+			rotate(stack_1);
 		}
 		else if (stack_1->stack[0] < pivot)
 		{
@@ -48,15 +48,16 @@ int	find_cost(int index, t_stack *stack_b)
 	{
 		cost = index + 1;
 	}
-	else 
+	else
 	{
 		cost = stack_b->len + 1 - index;
 	}
 	return (cost);
 }
-int find_index(int num, t_stack *stack_b)
+
+int	find_index(int num, t_stack *stack_b)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack_b->len)
@@ -70,11 +71,11 @@ int find_index(int num, t_stack *stack_b)
 
 int	get_min_cost_index(int num, t_stack *stack_b)
 {
-	int temp;
-	int temp_cost;
+	int	temp;
+	int	temp_cost;
 	int	min_cost;
-	int i;
-	int save;
+	int	i;
+	int	save;
 
 	save = -1;
 	min_cost = stack_b->len + 1;
@@ -82,16 +83,14 @@ int	get_min_cost_index(int num, t_stack *stack_b)
 	while (i < 3)
 	{
 		temp = find_index(num - 1 - i, stack_b);
-		if (temp == -1)
+		if (temp != -1)
 		{
-			i++;
-			continue ;
-		}
-		temp_cost = find_cost(temp, stack_b);
-		if (temp_cost <= min_cost)
-		{
-			min_cost = temp_cost;
-			save = temp;
+			temp_cost = find_cost(temp, stack_b);
+			if (temp_cost <= min_cost)
+			{
+				min_cost = temp_cost;
+				save = temp;
+			}
 		}
 		i++;
 	}

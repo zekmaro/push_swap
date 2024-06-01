@@ -12,7 +12,7 @@ def generate_unique_numbers(count, range_start, range_end):
 
 def main():
     # Generate 100 unique numbers from a specified range
-    unique_100 = generate_unique_numbers(20, -100, 100)  # Adjust range as needed
+    unique_100 = generate_unique_numbers(100, -100, 100)  # Adjust range as needed
     # Generate 500 unique numbers from a different or same range
     unique_500 = generate_unique_numbers(500, 1, 5000)  # Adjust range to ensure enough unique numbers
     

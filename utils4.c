@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:03:36 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 18:04:13 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 12:59:32 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	put_bottom_a(t_stack *stack_a, t_stack *stack_b)
 	return (0);
 }
 
-void push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
+void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
 {
-	int save;
-	
+	int	save;
+
 	save = stack_b->stack[temp_index];
 	if (temp_index <= stack_b->len / 2)
 	{
@@ -50,14 +50,14 @@ void push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
 
 void	divide_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
-	int pivot;
-	int max;
-	int min;
-	int i;
-	
+	int	pivot;
+	int	max;
+	int	min;
+	int	i;
+
 	pivot = calculate_pivot(stack_a->len);
 	i = 1;
-	while (stack_a->len > 3) 
+	while (stack_a->len > 3)
 	{
 		max = find_max_value(stack_a, stack_a->len);
 		if (pivot * i > max)
@@ -70,6 +70,6 @@ void	divide_stack_a(t_stack *stack_a, t_stack *stack_b)
 			divide_stack(stack_a, stack_b, pivot * i);
 		}
 		i++;
-    }
+	}
 	sort_top_three(stack_a, stack_b, 3);
 }

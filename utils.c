@@ -6,32 +6,19 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:34:24 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/27 11:42:13 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 14:16:21 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack)
+void	free_and_exit(char ***input, int *stack_a, int *index_stack_a)
 {
-	int	i;
-
-	i = 0;
-	while (i < stack->len)
-	{
-		ft_printf("%d\n", stack->stack[i]);
-		i++;
-	}
-}
-
-void	print_stacks(t_stack *stack_1, t_stack *stack_2)
-{
-	ft_printf("---------------\n");
-	ft_printf("STACK %c:\n", stack_1->name);
-	print_stack(stack_1);
-	ft_printf("STACK %c:\n", stack_2->name);
-	print_stack(stack_2);
-	ft_printf("---------------\n");
+	free(stack_a);
+	free(index_stack_a);
+	free_input(input);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
 
 void	initalise_stacks(char ***input, int *stack_a, int *index_stack_a)
@@ -45,11 +32,14 @@ void	initalise_stacks(char ***input, int *stack_a, int *index_stack_a)
 	while (input[i])
 	{
 		j = 0;
+		if (!input[i][j])
+			free_and_exit(input, stack_a, index_stack_a);
 		while (input[i][j])
 		{
 			stack_a[k] = ft_atoi(input[i][j]);
 			index_stack_a[k] = k;
-			check_input(input[i][j], stack_a[k], input, stack_a);
+			if (!check_input(input[i][j], stack_a[k]))
+				free_and_exit(input, stack_a, index_stack_a);
 			j++;
 			k++;
 		}

@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:11:31 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/27 11:41:32 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 14:16:12 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ void	free_input(char ***arr)
 	free(temp);
 }
 
-void	check_input(char *str, int num, char ***input, int *stack_a)
+int	check_input(char *str, int num)
 {
 	char	*check;
 
 	check = ft_itoa(num);
-	if (ft_strncmp(check, str, ft_strlen(str)) != 0)
+	if (!check || ft_strncmp(check, str, ft_strlen(str)) != 0)
 	{
-		free(stack_a);
-		free_input(input);
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
+		free(check);
+		return (0);
 	}
+	free(check);
+	return (1);
 }
 
 int	ft_realloc(t_stack *stack, int new_size)

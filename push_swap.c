@@ -6,21 +6,36 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:56:50 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 18:04:00 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:59:17 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_stack *stack_a, t_stack *stack_b) 
+void	restore_order(t_stack *stack_a, t_stack *stack_b, int counter)
 {
-	int counter;
-	int temp_index;
-	int top_a;
+	if (stack_a->stack[stack_a->len - 1]
+		!= stack_a->len - 1)
+	{
+		while (stack_a->stack[stack_a->len - 1]
+			!= stack_a->len + stack_b->len - 1)
+		{
+			reverse_rotate(stack_a);
+			counter++;
+		}
+		sort_top_five(stack_a, stack_b, counter);
+	}
+}
+
+void	push_swap(t_stack *stack_a, t_stack *stack_b)
+{
+	int	counter;
+	int	temp_index;
+	int	top_a;
 
 	divide_stack_a(stack_a, stack_b);
 	counter = 0;
-    while (stack_b->len != 0) 
+	while (stack_b->len != 0)
 	{
 		top_a = stack_a->stack[0];
 		counter = 0;
@@ -36,15 +51,7 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 		if (counter > 0 && counter <= 3)
 			sort_top_three(stack_a, stack_b, counter);
 	}
-	if (stack_a->stack[stack_a->len - 1] != stack_a->len - 1)
-	{
-		while (stack_a->stack[stack_a->len - 1] != stack_a->len + stack_b->len - 1)
-		{
-			reverse_rotate(stack_a);
-			counter++;
-		}
-		sort_top_five(stack_a, stack_b, counter);	
-	}
+	restore_order(stack_a, stack_b, counter);
 }
 
 int	main(int argc, char **argv)
@@ -58,8 +65,7 @@ int	main(int argc, char **argv)
 	stack_b.name = 'b';
 	if (argc == 1)
 	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	if (get_stack_a(&stack_a, argc, argv) == 1)
 	{

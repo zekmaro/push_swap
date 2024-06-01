@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:25:02 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 11:51:33 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/01 13:00:46 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	sa_pb_sa_pa(t_stack *stack_1, t_stack *stack_2)
 
 void	final_sort(t_stack *stack_1, t_stack *stack_2)
 {
-	int first;
-	int middle;
-	int last;
+	int	first;
+	int	middle;
+	int	last;
 
 	first = stack_1->stack[0];
 	middle = stack_1->stack[1];
