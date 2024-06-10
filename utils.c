@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:34:24 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/01 14:16:21 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/10 10:59:43 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ int	get_stack_a(t_stack *a, int argc, char **argv)
 	{
 		input[i] = ft_split(argv[i + 1], ' ');
 		if (!input[i])
+		{
 			free_input(input);
+			return (1);
+		}
 		a->len += array_len(input[i]);
 		i++;
 	}

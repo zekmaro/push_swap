@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:54:25 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/30 17:57:43 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:12:14 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_double_rotations(char *str, t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	check_operation(char *str, t_stack *stack_a, t_stack *stack_b)
+int	check_operation(char *str, t_stack *stack_a, t_stack *stack_b)
 {
 	if (ft_strncmp(str, "pb", 2) == 0)
 		push_bonus(stack_a, stack_b);
@@ -44,13 +44,35 @@ void	check_operation(char *str, t_stack *stack_a, t_stack *stack_b)
 		reverse_rotate_bonus(stack_a);
 	else if (ft_strncmp(str, "rrb", 3) == 0)
 		reverse_rotate_bonus(stack_b);
-	else
+	else if (ft_strncmp(str, "rr", 2) == 0
+			|| ft_strncmp(str, "rrr", 3) == 0)
 		check_double_rotations(str, stack_a, stack_b);
+	else
+		return (0);
+	return (1);
+}
+
+int	bonus(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*line;
+
+	line = get_next_line(0);
+	while (line != NULL)
+	{
+		if (!check_operation(line, stack_a, stack_b))
+		{
+			free(line);
+			return (0);
+		}
+		free(line);
+		line = get_next_line(0);
+	}
+	free(line);
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	char	*line;
 	t_stack	stack_a;
 	t_stack	stack_b;
 
@@ -60,16 +82,14 @@ int	main(int argc, char **argv)
 	ft_bzero(&stack_b, sizeof(t_stack));
 	stack_a.name = 'a';
 	stack_b.name = 'b';
-	get_stack_a(&stack_a, argc, &argv[0]);
-	line = get_next_line(0);
-	while (line != NULL)
+	if (get_stack_a(&stack_a, argc, argv) == 1)
 	{
-		check_operation(line, &stack_a, &stack_b);
-		free(line);
-		line = get_next_line(0);
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
 	}
-	free(line);
-	if (check_sorted(&stack_a) && stack_b.len == 0)
+	if (!bonus(&stack_a, &stack_b))
+		ft_printf("Error\n");
+	else if (check_sorted(&stack_a) && stack_b.len == 0)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

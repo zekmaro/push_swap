@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:56:50 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/01 13:59:17 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/10 11:55:31 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		exit(EXIT_FAILURE);
 	}
-	if (!check_sorted(&stack_a))
+	if (stack_a.len <= 5 && !check_sorted(&stack_a))
+		sort_fast(&stack_a, &stack_b);
+	else if (!check_sorted(&stack_a))
 		push_swap(&stack_a, &stack_b);
 	free(stack_a.stack);
 	free(stack_b.stack);

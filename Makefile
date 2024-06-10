@@ -16,7 +16,8 @@ SRC		:=	push_swap.c	\
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 			sort_three.c \
-			sort_five.c
+			sort_five.c \
+			fast_sorts.c
 
 SRC_BNS	:= 	bonus/checker.c	\
 			parsing.c	\
@@ -30,6 +31,7 @@ SRC_BNS	:= 	bonus/checker.c	\
 			get_next_line/get_next_line_utils.c \
 			sort_three.c \
 			sort_five.c \
+			fast_sorts.c \
 			bonus/methods_bonus.c
 
 OBJ		:= $(SRC:%.c=%.o)

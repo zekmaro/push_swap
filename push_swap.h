@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:42:18 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/01 14:16:16 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/10 11:55:45 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	sort_top_three(t_stack *stack_1, t_stack *stack_2, int counter);
 void	sort_top_five(t_stack *stack_1, t_stack *stack_2, int counter);
 int		check_sorted_reversed(t_stack *stack_id);
 int		check_sorted(t_stack *stack_id);
+void	sort_fast(t_stack *stack_a, t_stack *stack_b);
 //---------------
 
 //----METHODS----
