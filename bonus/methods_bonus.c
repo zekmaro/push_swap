@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:53:04 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/01 13:38:03 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:58:36 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ void	free_stacks_bonus(t_stack *stack_1, t_stack *stack_2)
 {
 	free(stack_1->stack);
 	free(stack_2->stack);
+	get_next_line(-1);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 
-void	push_bonus(t_stack *src, t_stack *dest)
+void	push_bonus(t_stack *src, t_stack *dest, char **str)
 {
 	int	status;
 
@@ -79,12 +80,14 @@ void	push_bonus(t_stack *src, t_stack *dest)
 	status = ft_realloc(dest, dest->len + 1);
 	if (status == 1)
 	{
+		free(*str);
 		free_stacks_bonus(src, dest);
 	}
 	dest->stack[0] = src->stack[0];
 	status = ft_realloc(src, src->len - 1);
 	if (status == 1)
 	{
+		free(*str);
 		free_stacks_bonus(src, dest);
 	}
 }

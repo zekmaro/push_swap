@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:54:25 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/10 12:12:14 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/11 19:45:25 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	check_double_rotations(char *str, t_stack *stack_a, t_stack *stack_b)
 {
-	if (ft_strncmp(str, "rr", 2) == 0)
+	if (ft_strncmp(str, "rr", 2) == 0 && ft_strlen(str) == 3)
 	{
 		rotate_bonus(stack_a);
 		rotate_bonus(stack_b);
 	}
-	else if (ft_strncmp(str, "rrr", 3) == 0)
+	else if (ft_strncmp(str, "rrr", 3) == 0 && ft_strlen(str) == 4)
 	{
 		reverse_rotate_bonus(stack_a);
 		reverse_rotate_bonus(stack_b);
@@ -28,24 +28,24 @@ void	check_double_rotations(char *str, t_stack *stack_a, t_stack *stack_b)
 
 int	check_operation(char *str, t_stack *stack_a, t_stack *stack_b)
 {
-	if (ft_strncmp(str, "pb", 2) == 0)
-		push_bonus(stack_a, stack_b);
-	else if (ft_strncmp(str, "pa", 2) == 0)
-		push_bonus(stack_b, stack_a);
-	else if (ft_strncmp(str, "sa", 2) == 0)
+	if (ft_strncmp(str, "pb", 2) == 0 && ft_strlen(str) == 3)
+		push_bonus(stack_a, stack_b, &str);
+	else if (ft_strncmp(str, "pa", 2) == 0 && ft_strlen(str) == 3)
+		push_bonus(stack_b, stack_a, &str);
+	else if (ft_strncmp(str, "sa", 2) == 0 && ft_strlen(str) == 3)
 		swap_bonus(stack_a);
-	else if (ft_strncmp(str, "sb", 2) == 0)
+	else if (ft_strncmp(str, "sb", 2) == 0 && ft_strlen(str) == 3)
 		swap_bonus(stack_b);
-	else if (ft_strncmp(str, "ra", 2) == 0)
+	else if (ft_strncmp(str, "ra", 2) == 0 && ft_strlen(str) == 3)
 		rotate_bonus(stack_a);
-	else if (ft_strncmp(str, "rb", 2) == 0)
+	else if (ft_strncmp(str, "rb", 2) == 0 && ft_strlen(str) == 3)
 		rotate_bonus(stack_b);
-	else if (ft_strncmp(str, "rra", 3) == 0)
+	else if (ft_strncmp(str, "rra", 3) == 0 && ft_strlen(str) == 4)
 		reverse_rotate_bonus(stack_a);
-	else if (ft_strncmp(str, "rrb", 3) == 0)
+	else if (ft_strncmp(str, "rrb", 3) == 0 && ft_strlen(str) == 4)
 		reverse_rotate_bonus(stack_b);
-	else if (ft_strncmp(str, "rr", 2) == 0
-			|| ft_strncmp(str, "rrr", 3) == 0)
+	else if ((ft_strncmp(str, "rr", 2 ) == 0 && ft_strlen(str) == 3)
+		|| (ft_strncmp(str, "rrr", 3) == 0 && ft_strlen(str) == 4))
 		check_double_rotations(str, stack_a, stack_b);
 	else
 		return (0);
@@ -62,6 +62,7 @@ int	bonus(t_stack *stack_a, t_stack *stack_b)
 		if (!check_operation(line, stack_a, stack_b))
 		{
 			free(line);
+			get_next_line(-1);
 			return (0);
 		}
 		free(line);
@@ -88,7 +89,7 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	if (!bonus(&stack_a, &stack_b))
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 	else if (check_sorted(&stack_a) && stack_b.len == 0)
 		ft_printf("OK\n");
 	else

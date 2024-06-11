@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:56:50 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/10 11:55:31 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/10 13:50:28 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 	if (get_stack_a(&stack_a, argc, argv) == 1)
 	{
 		write(2, "Error\n", 6);
+		get_next_line(-1);
 		exit(EXIT_FAILURE);
 	}
 	if (stack_a.len <= 5 && !check_sorted(&stack_a))

@@ -6,11 +6,22 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:30:39 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/10 12:02:41 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/11 15:28:26 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_fast_two(t_stack *stack_a)
+{
+	int	first;
+	int	last;
+
+	first = stack_a->stack[0];
+	last = stack_a->stack[2];
+	if (last < first)
+		swap(stack_a);
+}
 
 void	sort_fast_three(t_stack *stack_a)
 {
@@ -69,7 +80,11 @@ void	sort_fast_five(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_fast(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a->len <= 3)
+	if (stack_a->len == 2)
+	{
+		sort_fast_two(stack_a);
+	}
+	else if (stack_a->len == 3)
 	{
 		sort_fast_three(stack_a);
 	}

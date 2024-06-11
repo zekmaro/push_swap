@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:42:18 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/10 11:55:45 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:57:29 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ void	push(t_stack *src, t_stack	*dest);
 void	swap_bonus(t_stack *stack_id);
 void	rotate_bonus(t_stack *stack_id);
 void	reverse_rotate_bonus(t_stack *stack_id);
-void	push_bonus(t_stack *src, t_stack *dest);
+void	push_bonus(t_stack *src, t_stack *dest, char **str);
 
 #endif

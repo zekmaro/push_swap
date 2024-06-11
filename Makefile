@@ -3,7 +3,7 @@ BNS		:= checker
 CC		:= cc
 CFLAGS	:= -Wextra -Wall -Werror -g
 LIBS	:= libft/libft.a ft_printf/libftprintf.a
-HEADER	:= push_swap.h 
+HEADER	:= push_swap.h
 
 SRC		:=	push_swap.c	\
 			parsing.c	\

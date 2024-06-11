@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:14:30 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/23 21:21:20 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/11 14:22:20 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ size_t	ft_strlen_gnl(char const *s)
 		s++;
 	}
 	return (i);
+}
+
+void	ft_free_gnl(char **str)
+{
+	free(*str);
+	*str = NULL;
 }
 
 char	*extract_line(char	**leftovers)
@@ -56,12 +62,6 @@ char	*extract_line(char	**leftovers)
 	return (line);
 }
 
-void	ft_free_gnl(char **str)
-{
-	free(*str);
-	*str = NULL;
-}
-
 char	*get_next_line(int fd)
 {
 	static char	*leftovers = NULL;
@@ -69,7 +69,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (ft_free_gnl(&leftovers), NULL);
 	while (ft_strchr_gnl(leftovers, '\n') == NULL)
 	{
 		buffer = (char *)ft_calloc_gnl(BUFFER_SIZE + 1, 1);
@@ -77,7 +77,7 @@ char	*get_next_line(int fd)
 			return (ft_free_gnl(&leftovers), ft_free_gnl(&buffer), NULL);
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes < 0)
-			return (ft_free_gnl(&buffer), NULL);
+			return (ft_free_gnl(&buffer), ft_free_gnl(&leftovers), NULL);
 		if (read_bytes == 0)
 		{
 			ft_free_gnl(&buffer);
