@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 11:30:39 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/11 15:28:26 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/13 19:50:49 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sort_fast_two(t_stack *stack_a)
 	int	last;
 
 	first = stack_a->stack[0];
-	last = stack_a->stack[2];
+	last = stack_a->stack[1];
 	if (last < first)
 		swap(stack_a);
 }

@@ -6,16 +6,17 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:03:36 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/01 12:59:32 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/14 13:39:34 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	put_bottom_a(t_stack *stack_a, t_stack *stack_b)
+int	put_bottom_a(t_stack *stack_a, t_stack *stack_b, int top_a)
 {
-	if ((stack_a->stack[stack_a->len - 1] == stack_a->len + stack_b->len - 1)
-		|| stack_a->stack[stack_a->len - 1] < stack_b->stack[0])
+	if (((stack_a->stack[stack_a->len - 1] == stack_a->len + stack_b->len - 1)
+			|| stack_a->stack[stack_a->len - 1] < stack_b->stack[0])
+		&& !(stack_b->stack[0] >= top_a - 3 && stack_b->stack[0] <= top_a - 1))
 	{
 		push(stack_b, stack_a);
 		rotate(stack_a);
@@ -24,7 +25,8 @@ int	put_bottom_a(t_stack *stack_a, t_stack *stack_b)
 	return (0);
 }
 
-void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
+void	push_next_value(int temp_index, t_stack *stack_a,
+						t_stack *stack_b, int top_a)
 {
 	int	save;
 
@@ -33,7 +35,7 @@ void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
 	{
 		while (stack_b->stack[0] != save)
 		{
-			if (!put_bottom_a(stack_a, stack_b))
+			if (!put_bottom_a(stack_a, stack_b, top_a))
 				rotate(stack_b);
 		}
 	}
@@ -41,7 +43,7 @@ void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b)
 	{
 		while (stack_b->stack[0] != save)
 		{
-			if (!put_bottom_a(stack_a, stack_b))
+			if (!put_bottom_a(stack_a, stack_b, top_a))
 				reverse_rotate(stack_b);
 		}
 	}

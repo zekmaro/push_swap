@@ -63,4 +63,16 @@ fclean	:
 
 re		: fclean all
 
+test	:
+	make all
+	valgrind ./push_swap "`shuf -i 1-100000 -n 500 | tr "\n" " "`"
+
+supertest	:
+	make all
+	funcheck -a ./push_swap "`shuf -i -2147483648-2147483647 -n 30 | tr "\n" " "`"
+
+run		:
+	make all
+	./push_swap "`shuf -i 1-100000 -n 500 | tr "\n" " "`"
+
 .PHONY	: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:46:13 by anarama           #+#    #+#             */
-/*   Updated: 2024/05/27 11:42:23 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/14 13:38:29 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,18 @@ int	calculate_pivot(int size)
 	i = 1;
 	while (i * i < size / 2)
 		i++;
-	return (i * 4);
+	if (size <= 50)
+	{
+		if (size % 2 == 0)
+			return (size / 2);
+		else if (size % 2 == 1)
+			return (size / 2 + 1);
+	}
+	else if (size > 50 && size <= 100)
+	{
+		return (i * 4);
+	}
+	return (i * 5);
 }
 
 int	find_min_value(t_stack *stack, int range)

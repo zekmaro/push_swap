@@ -6,11 +6,31 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:56:50 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/10 13:50:28 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/14 13:39:24 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	int i;
+
+	i = 0;
+	ft_printf("STACK A\n");
+	while (i < stack_a->len)
+	{
+		ft_printf("%d\n", stack_a->stack[i]);
+		i++;
+	}
+	i = 0;
+	ft_printf("STACK B\n");
+	while (i < stack_b->len)
+	{
+		ft_printf("%d\n", stack_b->stack[i]);
+		i++;
+	}
+}
 
 void	restore_order(t_stack *stack_a, t_stack *stack_b, int counter)
 {
@@ -34,8 +54,8 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	int	top_a;
 
 	divide_stack_a(stack_a, stack_b);
-	counter = 0;
-	while (stack_b->len != 0)
+	//print_stacks(stack_a, stack_b);
+	while (stack_b->len)
 	{
 		top_a = stack_a->stack[0];
 		counter = 0;
@@ -45,11 +65,11 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 			if (temp_index == -1)
 				reverse_rotate(stack_a);
 			else
-				push_next_value(temp_index, stack_a, stack_b);
+				push_next_value(temp_index, stack_a, stack_b, top_a);
 			counter++;
 		}
-		if (counter > 0 && counter <= 3)
-			sort_top_three(stack_a, stack_b, counter);
+		sort_top_three(stack_a, stack_b, counter);
+		//print_stacks(stack_a, stack_b);
 	}
 	restore_order(stack_a, stack_b, counter);
 }

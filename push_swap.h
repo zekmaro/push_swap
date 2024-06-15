@@ -6,7 +6,7 @@
 /*   By: anarama <anarama@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:42:18 by anarama           #+#    #+#             */
-/*   Updated: 2024/06/11 14:57:29 by anarama          ###   ########.fr       */
+/*   Updated: 2024/06/14 11:46:02 by anarama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int		find_index(int num, t_stack *stack_b);
 int		get_min_cost_index(int num, t_stack *stack_b);
 //---------------
 
-//----UTILS3-----
-int		put_bottom_a(t_stack *stack_a, t_stack *stack_b);
-void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b);
+//----UTILS4-----
+int		put_bottom_a(t_stack *stack_a, t_stack *stack_b, int top_a);
+void	push_next_value(int temp_index, t_stack *stack_a, t_stack *stack_b, int	top_a);
 void	divide_stack_a(t_stack *stack_a, t_stack *stack_b);
 //---------------
 
